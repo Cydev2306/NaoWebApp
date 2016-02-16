@@ -1,0 +1,11 @@
+--2015-09-02 10:35:01--  http://nao/cron/convertvideo
+Résolution de nao (nao)... 127.0.0.1
+Connexion vers nao (nao)|127.0.0.1|:80... connecté.
+requête HTTP transmise, en attente de la réponse... 200 OK
+Taille : 0 [text/html]
+Enregistre : «convertvideo.1»
+
+     0K                                                        0,00 =0s
+
+2015-09-02 10:35:01 (0,00 B/s) - «convertvideo.1» enregistré [0/0]
+

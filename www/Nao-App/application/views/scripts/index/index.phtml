@@ -1,0 +1,83 @@
+<!-- <script>
+	function afficher(id)
+	{
+    	if(id === 'français')
+    	{
+    	    document.getElementById('français').style.visibility="visible";
+    	    document.getElementById('chinese').style.visibility="hidden";
+    	}
+    	if(id === 'chinese')
+    	{
+    	    document.getElementById('français').style.visibility="hidden";
+    	    document.getElementById('chinese').style.visibility="visible";
+    	}
+    	return true;
+	}
+</script>
+-->
+<div class="row-fluid  content-heading title">
+	<div class="span11 offset1">
+		<h2>Présentation</h2>
+	</div>
+</div>
+<div class="separator">
+	<span></span>
+</div>
+<div class="btn-group" role="group" aria-label="language">
+  <!--<button type="button" class="btn btn-default" onclick="afficher('français')">French</button>-->
+ <!-- <button type="button" class="btn btn-default" onclick="afficher('chinese')">Chinese</button>-->
+</div>
+</div>
+<div class="row-fluid">
+		<img id="nao" src="<?= $this->baseUrl('/img/newnao.jpg');?>" alt="petit robot nao" title="NAO" class="img-circle"/>
+	<div class="span8" id="français">
+		<div >
+		<p class="text-info">
+			Bruno Maisonnier a fondé Aldebaran Robotics en 2005, société dédiée à la robotique humanoïde.
+			<br />C'est de là que NAO est né !<br />
+			Ce petit compagnon mesure près de 58 centimètres et pèse environ 5 kilogrammes, il peut parler,
+			entendre,voir, interagir avec son environement.
+			Il possède de multiples moteurs ainsi que quelques capteurs tel que :
+		</p>
+		<ul class="nav nav-list text-info">
+			<li>Sonar</li>
+			<li>Microphones</li>
+			<li>Capteurs sensoriels</li>
+			<li>Caméras</li>
+		</ul><br />
+		<p class="text-info">
+			Tel qu'il est équipé il peut réaliser de nombreuses choses comme 
+			parler, marcher, reconnaître des personnes, comprendre ce qu'on lui dit,
+			conduire une voiture, jouer au golf, saisir des objets, lire le contenu des mails 
+			d'une boîte mail, etc ...<br />
+			Il peut être utiliser pour un but éducatif, faire apprendre à un enfant 
+			les tables de multiplication par exemple.
+		</p>
+		</div>
+	</div>
+	<!--<div class="span8" id="chinese" style="visibility: hidden;">
+		<p class="text-info">
+
+			布鲁诺Maisonnier成立于2005年Aldebaran Robotics公司，该公司专门为人形机器人。
+
+
+			<br />这是孬诞生了！<br />
+			这个小伴侣测量约58厘米，体重约5公斤，它可以说话，听到，看到和它的环境互动。它具有多个马达和一些传感器，例如：
+		</p>
+		<ul class="nav nav-list text-info">
+			<li>声纳</li>
+			<li>话筒</li>
+			<li>触摸传感器</li>
+			<li>摄像头</li>
+		</ul><br />
+		<p class="text-info">			
+			由于它搭载它可以实现很多东西喜欢说话，
+			走路，人们认识，了解什么是说，开车，打高尔夫球，
+			抢的对象，读一箱的邮件内容电子邮件等...<br />
+			由于它搭载它可以实现很多东西喜欢说话，走路，人们认识，了解什么是说，开车，打高尔夫球，抢的对象，读一箱的邮件内容电子邮件等...
+			它可用于教育目的，以教孩子乘法表，例如。
+		</p>
+	</div>-->
+</div>
+
+<? //echo phpinfo();?>

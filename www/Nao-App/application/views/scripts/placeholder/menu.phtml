@@ -1,0 +1,41 @@
+<?php
+//on récupère l'url pour déterminer le lien actif
+$act = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+$ctr = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+//permet de récupérer le module
+//$mdl = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+
+$this->placeholder('menu')->captureStart(); 
+?>
+
+<div class="sidebar_navigation gradient center">
+	<ul>
+		<li class="tip-right <? if($ctr == "index" && $act == "index"): ?>active<?php endif; ?>" data-original-title="Dashboard" style="height: auto;">
+			<a href="<?= $this->baseUrl('index/index'); ?>">Présentation</a>
+		</li>
+		<!-- <li class="tip-right <? if($ctr == "parametre" && $act == "index"): ?>active<?php endif; ?>" data-original-title="Dashboard" style="height: auto;">
+			<a href="<?= $this->baseUrl('parametre/index'); ?>">Paramètres</a>
+		</li> -->
+		<li class="tip-right <? if($ctr == "index" && $act == "interface"): ?>active<?php endif; ?>" data-original-title="Dashboard" style="height: auto;">
+			<a href="<?= $this->baseUrl('index/interface'); ?>">Interface</a>
+		</li>
+		<li class="tip-right <? if($ctr == "question"): ?>active<?php endif; ?>" data-original-title="Dashboard" style="height: auto;">
+			<a href="<?= $this->baseUrl('question/index'); ?>">Question / Réponse</a>
+		</li>
+		<li class="tip-right <? if($ctr == "photovideo" && $act == "photo"): ?>active<?php endif; ?>" data-original-title="Dashboard" style="height: auto;">
+			<a href="<?= $this->baseUrl('photovideo/photo'); ?>">Photos</a>
+		</li>
+		<li class="tip-right <? if($ctr == "colorpicker" && $act == "colorpicker"): ?>active<?php endif; ?>" data-original-title="Dashboard" style="height: auto;">
+			<a href="<?= $this->baseUrl('colorpicker/index'); ?>">Colorpicker</a>
+		</li>
+		<li class="tip-right <? if($ctr == "photovideo" && $act == "video"): ?>active<?php endif; ?>" data-original-title="Dashboard" style="height: auto;">
+			<a href="<?= $this->baseUrl('photovideo/video'); ?>">Vidéos</a>
+		</li>
+		<li class="tip-right <? if($ctr == "naoview" && $act == "index"): ?>active<?php endif; ?>" data-original-title="Dashboard" style="height: auto;">
+			<a href="<?= $this->baseUrl('naoview/index'); ?>">Vue de Nao</a>
+		</li>
+	</ul>
+</div>
+
+<?php $this->placeholder('menu')->captureEnd();
+ 

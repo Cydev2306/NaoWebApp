@@ -1,0 +1,65 @@
+<? $lesphotos = $this->parquatre; ?>
+<div class="row-fluid  content-heading title">
+	<div class="span11 offset1">
+		<h2>Photos prises par Nao</h2>
+	</div>
+</div>
+<div class="separator">
+	<span></span>
+</div>
+<div class="row-fluid">
+	<div class="span3">
+		<div class="scroll">
+			<div class="container-scroll">
+			<? foreach($lesphotos as $unephoto):?>
+				<a href="javascript:void(0);" class="miniature" id="<?= $unephoto['idPhoto'];?>" data-chemin="<?= $this->baseUrl('imgNao/'.$unephoto['nomPhoto']); ?>" onclick="agrandir(this);"><img id="<?= $unephoto['idPhoto'];?>" class="photo margin" alt="<?= $unephoto['nomPhoto'];?>" src="<?= $this->baseUrl('/imgNao/'.$unephoto['nomPhoto']); ?>"/></a>
+			<? endforeach;?>
+			</div>
+		</div>
+	</div>
+	<div class="span8 offset1">
+		<div class="grande-image"></div><br /><br />
+		<a target="link" href="#" class="enregistrer btn btn-info btn-large center" style="display:none;">Enregistrer cette image</a>
+		<a href="#" class="suppr btn btn-warning btn-large center" style="display:none;">Supprimer cette image</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.scroll').scroll(function()
+	{		
+		if($('.scroll').scrollTop() == $('.container-scroll').height()-$('.scroll').height())
+		{
+			$.ajax({
+				type: "POST",
+				url: "/ajax/photo",
+				dataType: "JSON", 
+				data: {
+					'last' : $('.miniature:last').attr('id'),
+					'event' : 'scroll'
+				}, 
+				success: function(data_result)
+				{
+					for (var i in data_result['requete'])
+					{
+						$('.container-scroll').append('<a href="javascript:void(0);" class="miniature" id="'+data_result['requete'][i]['idPhoto']+'" data-chemin="/imgNao/'+data_result['requete'][i]['nomPhoto']+'" onclick="agrandir(this);"><img id="'+data_result['requete'][i]['idPhoto']+'" class="photo margin" alt="'+data_result['requete'][i]['nomPhoto']+'" src="/imgNao/'+data_result['requete'][i]['nomPhoto']+'"/></a>');
+					}
+				}
+			});
+		}
+	});
+</script>
+
+<script type="text/javascript">
+function agrandir(e)
+{
+	var id = $(e).attr('id'),
+		chemin = $(e).attr('data-chemin');
+	$('.grande-image').html('<img src="'+chemin+'" id="'+id+'" alt="'+chemin+'" width="70%" height="70%" />');
+	$('a.suppr').attr('href', '/photovideo/supprimerphoto?id='+id);
+	$('a.suppr').attr('onclick', 'return confirm("Êtes-vous sûr de vouloir supprimer cette image ?");');
+	$('a.suppr').show();
+	$('a.enregistrer').attr('href', '/photovideo/index?nomImg='+chemin);
+	$('a.enregistrer').show();
+}
+</script>
+

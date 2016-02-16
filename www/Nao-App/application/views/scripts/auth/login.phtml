@@ -1,0 +1,15 @@
+<div class="offset4 span3 center" style="margin-top: 15%;">
+	<div class="login">
+		<h3  style="text-align:center;">Authentification :</h3>
+		<form class="form center" method="POST" action="<?= $this->baseUrl('/auth/login')?>">
+			<input name="login" class="input-medium" type="text" placeholder="Email"/><br/>
+			<input name="motDePasse" class="input-medium" type="password" placeholder="Mot de Passe"/><br/>
+			<input name="connexion" class="btn btn-success input-medium" type="submit"/>
+		</form>
+		<?php if(isset($this->erreur)):?>
+		<div class="alert">
+			<?= $this->erreur; ?>
+		</div>
+		<?php endif;?>
+ 	</div>
+</div>

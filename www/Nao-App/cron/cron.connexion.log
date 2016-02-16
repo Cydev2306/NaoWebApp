@@ -1,0 +1,6 @@
+--2015-07-03 09:11:00--  http://nao/cron/test
+Resolving nao (nao)... 127.0.0.1
+Connecting to nao (nao)|127.0.0.1|:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2015-07-03 09:11:00 ERROR 404: Not Found.
+

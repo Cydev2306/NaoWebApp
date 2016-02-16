@@ -1,0 +1,166 @@
+<?php $lesquestions = $this->lesquestions; ?>
+<?php $volume = $this->volume; ?>
+<div class="volume" data-volume="<?= $volume; ?>"></div>
+<script>
+    $(function() {
+        $(".longClick").bind("taphold", tapholdHandler);
+        function tapholdHandler( ) {
+            return false;
+        }
+    });
+</script>
+<!--<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>-->
+<script type="text/javascript">
+    var auto_refresh = setInterval(
+            function()
+            {
+                var unique = new Date();
+                document.images.live.src = "<?= $this->baseUrl('imgNao/live.jpeg'); ?>?unique=" + unique.getTime();
+            },40);
+</script>
+<script>
+    $(function()
+    {
+        $("#slider-vertical").slider({
+            orientation: "vertical",
+            range: "min",
+            min: 0,
+            max: 100,
+            value: $('.volume').attr('data-volume'),
+            slide: function(event, ui)
+            {
+                $("#amount").text(ui.value);
+            }
+        });
+        $("#amount").val($("#slider-vertical").slider("value"));
+    });
+</script>
+<div class="row-fluid margin">
+    <div class="span6">
+        <div class="row-fluid margin">
+            <div class="span1 offset1">
+                <label for="amount">Volume:</label>
+                <p id="amount" style="color: #f6931f; font-weight: bold;"></p>
+                <div id="slider-vertical" style="height: 200px;"></div>
+            </div>
+            <div class="span1 offset1">
+                <button class="btn btn-medium btn-warning" data-action="setVolume" data-active="false" onclick="setVolume(this);">Set</button>
+            </div>
+            <div class="span6 offset1">
+                <table>
+                    <tr>
+                        <td><div class="center ">
+                                <button class="btn btn-large btn-info nao-move-turn-left longClick" data-action="turn-left" data-active="false">
+                                    <i class="icon-white icon-circle-arrow-left"></i>
+                                </button></div>
+                        </td>
+                        <td></td>
+                        <td><button class="btn btn-large btn-info nao-move-turn-right longClick" data-action="turn-right" data-active="false">
+                                <i class="icon-white icon-circle-arrow-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="center">
+                            <button class="btn btn-large btn-info nao-move-up longClick" data-action="up" data-active="false">
+                                <i class="icon-arrow-up icon-white"></i>
+                            </button>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="btn btn-large btn-info nao-move-left longClick" data-action="left" data-active="false">
+                                <i class="icon-arrow-left icon-white"></i>
+                            </button>
+                        </td>
+                        <td class="center">
+                                 <img src="" id="live" alt="live" width="200" height="200" /><!--<i class="icon-certificate"></i>-->
+                        </td>
+                        <td>
+                            <button class="btn btn-large btn-info nao-move-right longClick"  data-action="right" data-active="false">
+                                <i class="icon-arrow-right icon-white"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="center">
+                            <button class="btn btn-large btn-info nao-move-down longClick" data-action="down" data-active="false">
+                                <i class="icon-arrow-down icon-white"></i>
+                            </button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid margin">
+            <div class="span6 offset6">
+               <!-- <button class="btn btn-medium btn-warning pull-left action" data-action="startLive" data-active="false" onclick="attach_event_action(this);">
+                    Start Live
+                </button>
+                <button class="btn btn-medium btn-warning pull-right action" disabled="disabled" data-action="stopLive" data-active="false" onclick="attach_event_action(this);">
+                    Stop Live
+                </button>-->
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid margin">
+            <div class="span12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th width="90%"><div class="center">Questions</div></th>
+                    <th width="10%"></th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody>
+                        <?php foreach ($lesquestions as $unequestion): ?>
+                            <tr>
+                                <td><?= $unequestion['question']; ?></td>
+                                <td>
+                                    <button class="btn btn-success btn-large margin large question" data-id="<?= $unequestion['id']; ?>" data-action="say" data-active="false" onclick="attach_event_action_sayanswer(this);">
+                                        <div class="center">
+                                            <i class="icon-white icon-volume-up"></i>
+                                        </div>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="span6">
+        <!--<button class="btn btn-primary btn-large margin large action" data-action="passion" data-active="false" onclick="attach_event_action(this);"><div class="center">Scénario Passion D'entreprendre</div></button><br />-->
+        <button class="btn btn-primary btn-large margin large action" data-action="grab" data-active="false" onclick="attach_event_action(this);"><div class="center">Demander un objet et le lancer !</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="sitdown" data-active="false" onclick="attach_event_action(this);"><div class="center">S'asseoir</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="standup" data-active="false" onclick="attach_event_action(this);"><div class="center">Se lever</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="crouch" data-active="false" onclick="attach_event_action(this);"><div class="center">S'accroupir</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="sayhello" data-active="false" onclick="attach_event_action(this);"><div class="center">Dire bonjour</div></button><br />
+        <!--<button class="btn btn-primary btn-large margin large action" data-action="lyingback" data-active="false" onclick="attach_event_action(this);"><div class="center">S'allonger sur le dos</div></button><br />-->
+        <!--
+        <button class="btn btn-primary btn-large margin large action" data-action="lyingbelly" data-active="false" onclick="attach_event_action(this);"><div class="center">S'allonger sur le ventre</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="thriller" data-active="false" onclick="attach_event_action(this);"><div class="center">Danse Thriller</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="aiseeutepego" data-active="false" onclick="attach_event_action(this);"><div class="center">Danse Ai se eu te pego </div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="dance" data-active="false" onclick="attach_event_action(this);"><div class="center">Danse Taï Chi Chuan</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="vangelis" data-active="false" onclick="attach_event_action(this);"><div class="center">Danse Vangelis</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="evolution" data-active="false" onclick="attach_event_action(this);"><div class="center">Danse évolution </div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="gangnamstyle" data-active="false" onclick="attach_event_action(this);"><div class="center">Danse Gangnam Style</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="caravanpalace" data-active="false" onclick="attach_event_action(this);"><div class="center">Danse Caravan Palace</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="haka" data-active="false" onclick="attach_event_action(this);"><div class="center">Danser le Haka</div></button><br />        -->
+        <button class="btn btn-primary btn-large margin large action" data-action="takePicture" data-active="false" onclick="attach_event_action(this);"><div class="center">Prendre une photo</div></button><br />
+        <button class="btn btn-primary btn-large margin large action" data-action="WriteNao" data-active="false" onclick="attach_event_action(this);"><div class="center">Ecrire mon nom</div></button>
+        <button class="btn btn-primary btn-large margin large action" data-action="WriteLetter" data-active="false" onclick="attach_event_action(this);"><div class="center">Ecrire une lettre</div></button>
+        <button class="btn btn-primary btn-large margin large action" data-action="takeVideo" data-active="false" onclick="attach_event_action(this);"><div class="center">Prendre une vidéo</div></button><br />
+
+    </div>
+</div>
+
+

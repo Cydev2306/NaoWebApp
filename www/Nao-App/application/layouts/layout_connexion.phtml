@@ -1,0 +1,46 @@
+<?= $this->doctype(); ?>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Interface NAO</title>
+		<link rel="icon" type="image/png" href="/img/naoFavIcon.png" />
+		<link href="<?= $this->baseUrl()?>/css/style.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="<?= $this->baseUrl()?>/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="<?= $this->baseUrl()?>/bootstrap/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body onload="attach_event_action_standup(); attach_event_action_sitdown(); attach_event_action_sayhello(); attach_event_action_up(); attach_event_action_right(); attach_event_action_down(); attach_event_action_left();">
+		<header>
+			<div class="header_wrapper">
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<ul class="user_nav">
+							<li>
+							<?php $auth = Zend_Auth::getInstance();?>
+							<?php if ($auth->hasIdentity()): ?>
+								<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn tips icon_logout" data-original-title="Logout"><i class="icon-off"></i> Se déconnecter</a>
+							<?php endif; ?>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="container-fluid fond">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="wrapper">
+						<?php if ($auth->hasIdentity()): ?>
+							<?= $this->placeholder('menu'); ?>
+						<?php endif ; ?>
+						<?= $this->layout()->content; ?>
+					</div>
+				</div>
+	    	</div>
+		</div> 
+		<footer>
+		</footer>
+		<script type="text/javascript" src="<?= $this->baseUrl('/js/jquery.min.js');?>"></script>
+		<script type="text/javascript" src="<?= $this->baseUrl('/bootstrap/js/bootstrap.js')?>"></script>
+		<script type="text/javascript" src="<?= $this->baseUrl('/js/ajaxExecuteFile.js');?>"></script>
+	</body>
+</html>

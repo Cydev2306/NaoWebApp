@@ -1,0 +1,70 @@
+<?php $lesquestions = $this->lesquestions; ?>
+
+<div class="row-fluid content-heading title">
+	<div class="span11 offset1">
+		<h2>Question / Réponse</h2>
+	</div>
+</div>
+<div class="separator">
+	<span></span>
+</div>
+<div class="row-fluid margin">
+	<div class="span12 center ">
+    	<!-- Button to trigger modal -->
+   			<a href="#ajout" class="btn btn-primary" data-toggle="modal">Ajouter une question</a>
+	</div>
+</div>
+<?php if(!empty($lesquestions)):?>
+	<div class="row-fluid margin">
+		<div class="span12">
+			<br />
+			<table class="table table-bordered table-hover">
+				<thead>
+      				<tr>
+      					<th width="5%"></th>
+      					<th width="47%"><div class="center">Question</div></th>
+      					<th width="47%"><div class="center">Réponse</div></th>
+      				</tr>
+      			</thead>
+      			<tfoot>
+      			</tfoot>
+      			<tbody>
+      				<?php foreach ($lesquestions as $unequestion):?>
+	      				<tr>
+	      					<td><a href="/question/supprimer?id=<?= $unequestion['id']; ?>" class="btn btn-danger btn-mini" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question ?');"><i class="icon-white icon-remove"></i></a></td>
+	      					<td><?= $unequestion['question']; ?></td>
+	      					<td><?= $unequestion['reponse']; ?></td>
+	      				</tr>
+      				<?php endforeach;?>
+      			</tbody>
+			</table>
+		</div>
+	</div>
+<?php else :?>
+	<div class="row-fluid margin">
+		<div class="span11 offset1">
+			<p class="text-info">Il n'y aucune question d'enregistrée</p>
+		</div>
+	</div>
+<?php endif;?>
+
+
+<!-- Modal -->
+<div id="ajout" class="modal hide fade" tabindex="-1">
+   	<div class="modal-header">
+	   	<button type="button" class="close" data-dismiss="modal">×</button>
+	   	<h3 id="myModalLabel">Ajouter une question</h3>
+	</div>
+	<form method="POST" action="/question/ajout">
+		<div class="modal-body">
+		   	<label>Question :</label>
+		   	<textarea rows="5" placeholder="Votre question" name="question"></textarea>
+		   	<label>Réponse :</label>
+		   	<textarea rows="5" placeholder="Votre réponse" name="reponse"></textarea>    	
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">Fermer</button>
+			<input type="submit" class="btn btn-success" value="Enregistrer" />
+	   </div>
+    </form>
+</div>

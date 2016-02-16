@@ -1,0 +1,80 @@
+<? $lesvideo = $this->lesvideos; ?>
+<div class="row-fluid  content-heading title">
+	<div class="span11 offset1">
+		<h2>Vidéos prises par Nao</h2>
+	</div>
+</div>
+<div class="separator">
+	<span></span>
+</div>
+<script type="text/javascript">jwplayer.key="joIVYck7bPWr2SV2fiKztJTt+qpVdFEwklVMXw==";</script>
+<div class="row-fluid">
+	<div class="span3">
+		<div class="scroll">
+			<div class="container-scroll" >
+				<? foreach($lesvideo as $unevideo):?>
+					<a href="javascript:void(0);" style="position:relative;" class="miniature" id="<?= $unevideo['idVideo'];?>" data-chemin="<?= $this->baseUrl('videoNao/'.$unevideo['nomVideo'].'.mp4'); ?>" onclick="agrandir(this);">
+						<img id="<?= $unevideo['idVideo'];?>" class="video margin" alt="<?= $unevideo['nomVideo'];?>" src="<?= $this->baseUrl('videoNao/miniature/'.$unevideo['nomVideo'].'.jpeg'); ?>" />
+						<img id="play" class="margin" src="<?= $this->baseUrl('img/play.png'); ?>" alt="play" style="position:absolute; top:0px; left:35%; width:45px;height:42px;"/>
+					</a>
+					<br />
+				<? endforeach;?>
+			</div>
+		</div>
+	</div>
+	<div class="span8 offset1">
+		<div class="grande-image"></div><br /><br />
+		<a target="link" href="#" class="enregistrer btn btn-info btn-large center" style="display:none;">Enregistrer cette vidéo</a>
+		<a href="#" class="suppr btn btn-warning btn-large center" style="display:none;">Supprimer cette vidéo</a>
+	</div>
+</div>
+<script type="text/javascript">
+function agrandir(e)
+{
+	var id = $(e).attr('id'),
+		chemin = $(e).attr('data-chemin');
+	$('.grande-image').html('<div id="player'+id+'">Loading the player...</div>');
+	jwplayer('player'+id).setup({
+		'id': 'player'+id,
+		'width': '450',
+		'height': '300',
+		'file': chemin,
+		'controlbar': 'over',
+		'modes': [
+			{type: 'html5'},
+			{type: 'flash', src: './js/jwplayer/jwplayer.flash.swf'}
+			]
+		});
+	$('a.suppr').attr('href', '/photovideo/supprimervideo?id='+id);
+	$('a.suppr').attr('onclick', 'return confirm("Êtes-vous sûr de vouloir supprimer cette vidéo ?");');
+	$('a.suppr').show();
+	$('a.enregistrer').attr('href', '/photovideo/index?nomVideo='+chemin);
+	$('a.enregistrer').show();
+}
+</script>
+<!-- 			
+<script type="text/javascript">
+	$('.scroll').scroll(function()
+	{		
+		if($('.scroll').scrollTop() == $('.container-scroll').height()-$('.scroll').height())
+		{
+			$.ajax({
+				type: "POST",
+				url: "/ajax/video",
+				dataType: "JSON", 
+				data: {
+					'last' : $('.miniature:last').attr('id'),
+					'event' : 'scroll'
+				}, 
+				success: function(data_result)
+				{
+					for (var i in data_result['requete'])
+					{
+						$('.container-scroll').append('<a href="javascript:void(0);" class="miniature" id="'+data_result['requete'][i]['idVideo']+'" data-chemin="/videoNao/'+data_result['requete'][i]['nomVideo']+'" onclick="agrandir(this);"><img id="'+data_result['requete'][i]['idVideo']+'" class="photo margin" alt="'+data_result['requete'][i]['nomVideo']+'" src="/videoNao/'+data_result['requete'][i]['nomVideo']+'"/></a>');
+					}
+				}
+			});
+		}
+	});
+</script>
+ -->

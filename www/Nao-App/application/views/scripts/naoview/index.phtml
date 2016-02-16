@@ -1,0 +1,10 @@
+<script type="text/javascript">
+    var auto_refresh = setInterval(
+            function()
+            {
+                var unique = new Date();
+                document.images.live.src = "<?= $this->baseUrl('imgNao/live.jpeg'); ?>?unique=" + unique.getTime();
+            }, 40);
+</script>
+
+<img src="" id="live" alt="live" width="100%" height="100%" />
