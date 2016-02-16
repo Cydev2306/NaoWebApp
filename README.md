@@ -1,7 +1,5 @@
-# NaoWebApp.md
+
 ### A simple web application to control the Nao Robot
-
-
 ## Installation
 
 This application only require **Vagrant**, you can install it by **[this way](https://www.vagrantup.com)**.
